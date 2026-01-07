@@ -59,7 +59,7 @@ def send_ntfy(message):
         NTFY_TOPIC_URL,
         data=message.encode("utf-8"),
         headers={
-            "Title": "🌏 Earthquake Notification",
+            "Title": "Earthquake Notification",
             "Priority": "4",
             "Tags": "earthquake,alert"
         },
