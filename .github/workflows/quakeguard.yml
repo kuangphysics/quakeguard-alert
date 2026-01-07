@@ -1,0 +1,32 @@
+name: QuakeGuard Hourly Alert
+
+on:
+  schedule:
+    - cron: "0 * * * *"   # รันทุกชั่วโมง (ต้นชั่วโมง)
+  workflow_dispatch:      # กดรันทดสอบเองได้
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run QuakeGuard notifier
+        env:
+          NTFY_TOPIC_URL: ${{ secrets.NTFY_TOPIC_URL }}
+          MIN_MAG: "2.0"
+          WINDOW_MINUTES: "60"
+        run: |
+          python quake_ntfy.py
