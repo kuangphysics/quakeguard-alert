@@ -17,8 +17,8 @@ from datetime import datetime, timezone, timedelta
 USGS_URL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson"
 
 NTFY_TOPIC_URL = os.getenv("NTFY_TOPIC_URL")  # ตั้งใน GitHub Secrets
-MIN_MAG = float(os.getenv("MIN_MAG", "2.0"))
-WINDOW_MINUTES = int(os.getenv("WINDOW_MINUTES", "60"))
+MIN_MAG = float(os.getenv("MIN_MAG", "1.0"))
+WINDOW_MINUTES = int(os.getenv("WINDOW_MINUTES", "120"))
 
 # Debug mode: ถ้า True จะส่งแจ้งเตือนแม้ไม่มีเหตุเข้าเงื่อนไข
 # ตั้งใน GitHub Actions env: DEBUG_NOTIFY: "true"
